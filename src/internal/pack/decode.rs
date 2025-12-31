@@ -20,7 +20,7 @@ use threadpool::ThreadPool;
 use tokio::sync::mpsc::UnboundedSender;
 use uuid::Uuid;
 
-use super::cache_object::CacheObjectInfo;
+use crate::internal::pack::cache_object::CacheObjectInfo;
 use crate::{
     errors::GitError,
     hash::{ObjectHash, get_hash_kind, set_hash_kind},

@@ -3,7 +3,8 @@
 
 use std::io::{ErrorKind, Read};
 
-use super::{errors::GitDeltaError, utils};
+use crate::delta::errors::GitDeltaError;
+use crate::delta::utils;
 
 const COPY_INSTRUCTION_FLAG: u8 = 1 << 7; // msb set => copy from base, otherwise inline data
 const COPY_OFFSET_BYTES: u8 = 4;

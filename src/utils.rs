@@ -9,6 +9,7 @@ use std::{
 use sha1::{Digest, Sha1};
 
 use crate::hash::{HashKind, ObjectHash, get_hash_kind};
+
 /// Read exactly `len` bytes from the given reader.
 pub fn read_bytes(file: &mut impl Read, len: usize) -> io::Result<Vec<u8>> {
     let mut buf = vec![0; len];

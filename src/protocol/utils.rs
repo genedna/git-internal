@@ -3,7 +3,7 @@
 
 use bytes::{Buf, BufMut, Bytes, BytesMut};
 
-use super::types::{PKT_LINE_END_MARKER, TransportProtocol};
+use crate::protocol::types::{PKT_LINE_END_MARKER, TransportProtocol};
 
 /// Read a packet line from the given bytes buffer
 ///
@@ -125,8 +125,9 @@ pub fn search_subsequence(haystack: &[u8], needle: &[u8]) -> Option<usize> {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
     use bytes::Bytes;
+
+    use super::*;
 
     /// Test that read_pkt_line correctly reads a complete packet line
     #[test]

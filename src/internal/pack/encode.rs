@@ -10,16 +10,13 @@ use std::{
 };
 
 use ahash::AHasher;
-// use libc::ungetc;
 use chrono::Utc;
 use flate2::write::ZlibEncoder;
 use natord::compare;
 use rayon::prelude::*;
-//use tokio::io::AsyncWriteExt;
 use tokio::io::AsyncWriteExt as TokioAsyncWriteExt;
 use tokio::{fs::File, sync::mpsc, task::JoinHandle};
 
-//use std::io as stdio;
 use crate::delta;
 use crate::{
     errors::GitError,

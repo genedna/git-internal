@@ -9,6 +9,7 @@ use crate::{
     hash::{HashKind, ObjectHash, get_hash_kind},
     utils::HashAlgorithm,
 };
+
 /// [`Wrapper`] is a wrapper around a reader that also computes the SHA1/ SHA256 hash of the data read.
 ///
 /// It is designed to work with any reader that implements `BufRead`.

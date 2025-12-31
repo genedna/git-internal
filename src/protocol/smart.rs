@@ -6,17 +6,20 @@ use std::collections::HashMap;
 use bytes::{BufMut, Bytes, BytesMut};
 use tokio_stream::wrappers::ReceiverStream;
 
-use super::{
-    core::{AuthenticationService, RepositoryAccess},
-    pack::PackGenerator,
-    types::{
-        COMMON_CAP_LIST, Capability, LF, NUL, PKT_LINE_END_MARKER, ProtocolError, ProtocolStream,
-        RECEIVE_CAP_LIST, RefCommand, RefTypeEnum, SP, ServiceType, SideBand, TransportProtocol,
-        UPLOAD_CAP_LIST,
+use crate::{
+    hash::{HashKind, ObjectHash, get_hash_kind},
+    protocol::{
+        core::{AuthenticationService, RepositoryAccess},
+        pack::PackGenerator,
+        types::{
+            COMMON_CAP_LIST, Capability, LF, NUL, PKT_LINE_END_MARKER, ProtocolError,
+            ProtocolStream, RECEIVE_CAP_LIST, RefCommand, RefTypeEnum, SP, ServiceType, SideBand,
+            TransportProtocol, UPLOAD_CAP_LIST,
+        },
+        utils::{add_pkt_line_string, build_smart_reply, read_pkt_line, read_until_white_space},
     },
-    utils::{add_pkt_line_string, build_smart_reply, read_pkt_line, read_until_white_space},
 };
-use crate::hash::{HashKind, ObjectHash, get_hash_kind};
+
 /// Smart Git Protocol implementation
 ///
 /// This struct handles the Git smart protocol operations for both HTTP and SSH transports.
@@ -470,7 +473,6 @@ mod tests {
     use tokio::sync::mpsc;
 
     use super::*;
-    use crate::protocol::utils; // import sibling module
     use crate::{
         hash::{HashKind, ObjectHash, set_hash_kind_for_test},
         internal::{
@@ -483,6 +485,7 @@ mod tests {
             },
             pack::{encode::PackEncoder, entry::Entry},
         },
+        protocol::utils, // import sibling module
     };
 
     // Simplify complex type via aliases to satisfy clippy::type_complexity

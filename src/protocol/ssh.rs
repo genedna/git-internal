@@ -2,7 +2,7 @@
 //! helpers for authenticating connections, parsing SSH commands, and serving upload/receive-pack
 //! requests over interactive channels.
 
-use super::{
+use crate::protocol::{
     core::{AuthenticationService, GitProtocol, RepositoryAccess},
     types::{ProtocolError, ProtocolStream},
 };

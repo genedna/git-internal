@@ -2,6 +2,7 @@
 //!
 //! This module provides the main `GitProtocol` struct and `RepositoryAccess` trait
 //! that form the core interface of the git-internal library.
+
 use std::{collections::HashMap, str::FromStr};
 
 use async_trait::async_trait;
@@ -342,6 +343,7 @@ impl<R: RepositoryAccess, A: AuthenticationService> GitProtocol<R, A> {
         }
     }
 }
+
 
 fn build_side_band_packets(chunk: &[u8], max_payload: usize) -> Vec<Bytes> {
     if chunk.is_empty() {
